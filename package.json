@@ -10,7 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
- 
+      "@vercel/node": "^1.11.0"
+    }
   }
-
-}
+  
