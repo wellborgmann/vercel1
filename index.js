@@ -154,7 +154,7 @@ const CACHE_EXPIRATION_TIME = 1000; // 10 minutos
 
 app.get("/proxy", async (req, res) => {
   const targetUrl = req.query.url;
-
+    console.log("URL:", targetUrl);
   if (!targetUrl) {
     return res.status(400).json({ error: "URL is required" });
   }
