@@ -92,7 +92,6 @@ app.get("/live", blockBrowsers, (req, res) => {
   let { url } = req.query;
 
 
-  // Adiciona o prefixo à URL
   url = atob(url);
 
   // Redireciona para a URL final
