@@ -17,7 +17,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 
 
-const { Server } = require("socket.io");
+
 
 
 const app = express();
@@ -41,12 +41,11 @@ app.use(cors());
 const privateKey = fs.readFileSync("private.pem");
 const certificate = fs.readFileSync("ssl.pem");
 
-const credentials = { key: privateKey, cert: certificate };
-const httpsServer = https.createServer(credentials, app);
-const httpServer = createServer(app);
-const httpServer2 = createServer(app);
 
-httpServer2.listen(7000, () => {
+const httpServer = createServer(app);
+
+
+httpServer.listen(7000, () => {
   console.log(`Servidor HTTPS rodando na porta `);
 });
 
@@ -102,16 +101,8 @@ app.get("/live", blockBrowsers, (req, res) => {
 
 
 
-const io = new Server(httpsServer);
-
-io.attach(httpServer);
-io.attach(httpsServer);
-
 app.use(express.static(path.join("/etc/site/assets")));
 
-io.use((socket, next) => {
-  sessionMiddleware(socket.request, socket.request.res || {}, next);
-});
 
 // Redireciona HTTP para HTTPS
 
@@ -312,8 +303,6 @@ app.get("/webcam", (req, res) => {
 app.set("trust proxy", 1);
 module.exports = {
   httpServer,
-  httpsServer,
-  io,
   app,
   sessionMiddleware, // Exportar o middleware de sessão para ser acessível em outros arquivos
 };
