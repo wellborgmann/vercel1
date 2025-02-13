@@ -7,12 +7,12 @@
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ],
-  "env": {
+{
+  "src": "/(.*)",
+  "dest": "/index.js"
+}
+],
+     "env": {
     "NODE_OPTIONS": "--no-deprecation"
   }
 }
