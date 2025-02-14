@@ -10,6 +10,10 @@ const __dirname = dirname(__filename);
 const server = http.createServer(app);
 const io = new socketIo(server);
 
+app.get("/", (req, res)=>{
+    res.send("OOOOOOI");
+});
+
 server.listen(8000, () => {
     console.log("Server is running on http://localhost:8000");
 });
